@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_cats"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_cats" />
+        <item
+            android:id="@+id/nav_netflix"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_netflix" />
+        <item
+            android:id="@+id/nav_countries"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_countries" />
+        <item
+            android:id="@+id/nav_qr"
+            android:icon="@android:drawable/ic_menu_camera"
+            android:title="@string/menu_qr" />
+        <item
+            android:id="@+id/nav_input_sheet"
+            android:icon="@android:drawable/ic_input_add"
+            android:title="@string/menu_input_sheet" />
+        <item
+            android:id="@+id/nav_frag_pager"
+            android:icon="@android:drawable/ic_menu_gallery"
+            android:title="@string/menu_frag_pager" />
+        <item
+            android:id="@+id/nav_comp_pager"
+            android:icon="@android:drawable/ic_menu_gallery"
+            android:title="@string/menu_comp_pager" />
+        <item
+            android:id="@+id/nav_recycler_pager"
+            android:icon="@android:drawable/ic_menu_gallery"
+            android:title="@string/menu_recycler_pager" />
+        <item
+            android:id="@+id/nav_camera"
+            android:icon="@android:drawable/ic_menu_camera"
+            android:title="@string/menu_camera" />
+        <item
+            android:id="@+id/nav_translation"
+            android:icon="@android:drawable/ic_menu_send"
+            android:title="@string/menu_translation" />
+    </group>
+</menu>

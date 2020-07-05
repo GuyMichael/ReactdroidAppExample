@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppTheme colors -->
+
+    <color name="dayNightPrimary">@color/colorPrimaryDark</color>
+    <color name="dayNightCursor">@color/white55</color>
+
+
+    <!--TextView-->
+
+        <!--EditText-->
+    <color name="et_primary">@color/white</color>
+
+        <!--Button-->
+
+        <!--Card-->
+    <color name="card_bg">@color/black87NoTransparency</color>
+
+        <!--List-->
+    <color name="cardList_bg">@color/black</color>
+
+
+
+    <!-- Countries -->
+    <color name="countries_search_background">@color/black70NoTransparency</color>
+
+    <!-- Camera -->
+    <color name="camera_dissolve_foreground">@color/black70NoTransparency</color>
+
+</resources>

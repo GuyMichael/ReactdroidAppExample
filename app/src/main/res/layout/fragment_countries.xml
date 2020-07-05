@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.countries.CountriesFragment">
+
+    <FrameLayout
+        android:id="@+id/constraint_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/countries_search_background"
+        >
+
+        <EditText
+            android:id="@+id/country_name_constraint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/countries_constraint_hint"
+            android:autofillHints="word"
+            android:inputType="textAutoComplete"
+            android:paddingTop="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:background="@null"/>
+    </FrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/countries_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/constraint_container"
+    />
+</RelativeLayout>

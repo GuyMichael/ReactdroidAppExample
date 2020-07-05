@@ -1,0 +1,122 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+
+        <!-- Colors -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- Dialog -->
+        <item name="android:dialogTheme">@style/AppTheme.Dialog</item>
+        <item name="dialogTheme">@style/AppTheme.Dialog</item>
+        <item name="alertDialogTheme">@style/AppTheme.Dialog.Alert</item>
+
+        <!-- Button-->
+        <item name="android:buttonStyle">@style/AppTheme.Button</item>
+        <item name="buttonStyle">@style/AppTheme.Button</item>
+
+        <!-- TextView -->
+        <item name="android:textViewStyle">@style/AppTheme.TextView</item>
+
+        <!-- EditText -->
+        <item name="android:editTextStyle">@style/AppTheme.EditText</item>
+        <item name="editTextStyle">@style/AppTheme.EditText</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+
+    <!-- Dialog -->
+
+    <style name="AppTheme.Dialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="AppTheme.Dialog.Alert" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:windowTitleStyle">@style/AlertDialogStyle.Title</item>
+        <item name="windowMinWidthMajor">280dp</item>
+        <item name="windowMinWidthMinor">280dp</item>
+        <item name="android:windowMinWidthMajor">280dp</item>
+        <item name="android:windowMinWidthMinor">280dp</item>
+    </style>
+
+    <style name="AlertDialogStyle.Title" parent="Base.DialogWindowTitle.AppCompat">
+        <item name="android:drawablePadding">8dp</item>
+    </style>
+
+
+
+
+    <!-- TextView -->
+    <style name="AppTheme.TextView" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/textPrimaryBlack</item>
+        <item name="android:gravity">center|start</item>
+        <item name="android:textSize">@dimen/textPrimary</item>
+    </style>
+
+    <!-- EditText -->
+    <style name="AppTheme.EditText" parent="@style/Widget.AppCompat.EditText">
+        <item name="android:inputType">text</item>
+        <item name="android:textColorHint">@drawable/et_hint_color_state</item>
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:textColor">@color/et_primary</item>
+        <item name="android:textSize">@dimen/textPrimary</item>
+        <item name="android:paddingLeft">@dimen/et_padding_horizontal</item>
+        <item name="android:paddingRight">@dimen/et_padding_horizontal</item>
+        <item name="android:paddingTop">@dimen/et_padding_top</item>
+        <item name="android:paddingBottom">@dimen/et_padding_bottom</item>
+        <item name="android:drawablePadding">@dimen/text_drawable_padding</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textCursorDrawable">@drawable/cursor</item>
+        <item name="android:backgroundTint">@color/et_bg_tint_color_state</item>
+    </style>
+
+    <!-- Button -->
+    <style name="AppTheme.Button" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:textSize">@dimen/textPrimary</item>
+        <item name="android:textColor">@color/btnTextColor</item>
+        <item name="android:drawablePadding">@dimen/text_drawable_padding</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/btn_bg_primary</item>
+        <item name="android:paddingTop">@dimen/btn_padding_vertical</item>
+        <item name="android:paddingBottom">@dimen/btn_padding_vertical</item>
+        <item name="android:paddingRight">@dimen/btn_padding_horizontal</item>
+        <item name="android:paddingLeft">@dimen/btn_padding_horizontal</item>
+        <item name="android:minHeight">0dp</item>
+    </style>
+
+    <style name="AppTheme.Button.CTA" parent="@style/AppTheme.Button">
+        <item name="android:background">@drawable/btn_cta_primary_bg</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/text14</item>
+        <item name="android:paddingTop">@dimen/btn_main_cta_padding_vertical</item>
+        <item name="android:paddingBottom">@dimen/btn_main_cta_padding_vertical</item>
+        <item name="android:paddingLeft">@dimen/btn_main_cta_padding_horizontal</item>
+        <item name="android:paddingRight">@dimen/btn_main_cta_padding_horizontal</item>
+        <item name="android:fontFamily">@string/font_roboto_medium</item>
+    </style>
+
+    <style name="AppTheme.Button.Secondary" parent="@style/AppTheme.Button.CTA">
+        <item name="android:background">@drawable/btn_bg_secondary</item>
+        <item name="android:textColor">@drawable/btn_secondary_text_color_state</item>
+    </style>
+
+    <style name="AppTheme.Button.Transparent" parent="@style/AppTheme.Button">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@drawable/btn_transparent_text_color_state</item>
+        <item name="android:padding">8dp</item>
+    </style>
+
+</resources>

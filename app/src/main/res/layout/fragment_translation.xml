@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.countries.CountriesFragment">
+    
+    <EditText
+        android:id="@+id/translation_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="8dp"
+        android:hint="@string/translation_input_hint"
+        android:autofillHints="word"
+        android:inputType="textAutoComplete"
+    />
+
+    <TextView
+        android:id="@+id/translation_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/translation_input"
+        android:layout_marginTop="2dp"
+        android:background="@color/black05"
+        android:padding="24dp"
+        android:gravity="center"
+        android:textColor="@color/black87NoTransparency"
+        android:fontFamily="@string/font_roboto_medium"
+    />
+</RelativeLayout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.guymichael.componentapplicationexample.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_cats"
+        android:name="com.guymichael.componentapplicationexample.ui.cats.CatsFragment"
+        android:label="@string/cats_title"
+        tools:layout="@layout/fragment_cats" />
+
+    <fragment
+        android:id="@+id/nav_netflix"
+        android:name="com.guymichael.componentapplicationexample.ui.netflix.NetflixCatalogFragment"
+        android:label="@string/menu_netflix"
+        tools:layout="@layout/fragment_netflix" />
+
+    <fragment
+        android:id="@+id/nav_countries"
+        android:name="com.guymichael.componentapplicationexample.ui.countries.CountriesFragment"
+        android:label="@string/menu_countries"
+        tools:layout="@layout/fragment_countries" />
+
+    <fragment
+        android:id="@+id/nav_qr"
+        android:name="com.guymichael.componentapplicationexample.ui.qrcode.QRCodeFragment"
+        android:label="@string/menu_qr"
+        tools:layout="@layout/fragment_qr" />
+
+    <fragment
+        android:id="@+id/nav_input_sheet"
+        android:name="com.guymichael.componentapplicationexample.ui.inputsheet.InputSheetFragment"
+        android:label="@string/menu_input_sheet"
+        tools:layout="@layout/fragment_input_sheet" />
+
+    <fragment
+        android:id="@+id/nav_frag_pager"
+        android:name="com.guymichael.componentapplicationexample.ui.pager.FragmentPagerFragment"
+        android:label="@string/menu_frag_pager"
+        tools:layout="@layout/fragment_pager" />
+
+    <fragment
+        android:id="@+id/nav_comp_pager"
+        android:name="com.guymichael.componentapplicationexample.ui.pager.ComponentPagerFragment"
+        android:label="@string/menu_comp_pager"
+        tools:layout="@layout/fragment_pager" />
+
+    <fragment
+        android:id="@+id/nav_recycler_pager"
+        android:name="com.guymichael.componentapplicationexample.ui.pager.RecyclerPagerFragment"
+        android:label="@string/menu_recycler_pager"
+        tools:layout="@layout/fragment_recycler_pager" />
+
+    <fragment
+        android:id="@+id/nav_camera"
+        android:name="com.guymichael.componentapplicationexample.ui.camera.CameraFragment"
+        android:label="@string/menu_camera"
+        tools:layout="@layout/fragment_camera" />
+
+    <fragment
+        android:id="@+id/nav_translation"
+        android:name="com.guymichael.componentapplicationexample.ui.translation.TranslationFragment"
+        android:label="@string/menu_translation"
+        tools:layout="@layout/fragment_translation" />
+
+</navigation>

@@ -1,0 +1,69 @@
+<resources>
+    <string name="app_name">ComponentApplicationExample</string>
+
+    <!-- Menu -->
+    <string name="action_settings">Settings</string>
+        <!-- Drawer -->
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_cats">Cats Catalog</string>
+    <string name="menu_netflix">Netflix Catalog</string>
+    <string name="menu_countries">Countries</string>
+    <string name="menu_qr">Scan QRCode</string>
+    <string name="menu_camera">Camera</string>
+    <string name="menu_translation">Translation</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_input_sheet">Input Sheet</string>
+    <string name="menu_frag_pager">Fragment ViewPager</string>
+    <string name="menu_comp_pager">AComponent ViewPager</string>
+    <string name="menu_recycler_pager">RecyclerView Pager</string>
+
+
+    <!-- Input Sheet -->
+    <string name="input_checkbox_1">Checkbox 1</string>
+    <string name="input_checkbox_2">Checkbox 2</string>
+    <string name="input_checkbox_3">Checkbox 3</string>
+    <string name="input_checkbox_summary_format_d">Checked:&#160;%1$d</string>
+    <string name="input_radio_1">Radio 1</string>
+    <string name="input_radio_2">Radio 2</string>
+    <string name="input_radio_3">Radio 3</string>
+    <string name="input_radio_summary_format_s">Checked:&#160;%1$s</string>
+    <string name="input_toggle_1">Toggle 1</string>
+    <string name="input_toggle_2">Toggle 2</string>
+    <string name="input_toggle_3">Toggle 3</string>
+    <string name="input_toggle_summary_format_d">Checked:&#160;%1$d</string>
+    <string name="input_switch_1">Switch 1</string>
+    <string name="input_switch_2">Switch 2</string>
+    <string name="input_switch_3">Switch 3</string>
+    <string name="input_switch_summary_format_d">Checked:&#160;%1$d</string>
+    <string name="input_seekbar_summary_format_s">Checked:&#160;%1$s</string>
+
+
+    <!-- Camera -->
+    <string name="camera_btn_cd">Take a picture</string>
+
+    <!-- Dialogs -->
+    <string name="dialog_btn_ok">@android:string/ok</string>
+    <string name="dialog_btn_cancel">@android:string/cancel</string>
+
+
+    <!-- Home -->
+    <string name="home_hello_world">This is Home Fragment</string>
+    <string name="home_dialog_title">Welcome!</string>
+    <string name="home_dialog_msg">This application is a usage example for the Reactdroid library!\nEvery page has some different usages and examples</string>
+
+    <!-- countries -->
+    <string name="countries_constraint_hint">Search</string>
+
+    <!-- cats -->
+    <string name="cats_title">Cat Images - Paging on Scroll</string>
+
+    <!-- translation -->
+    <string name="translation_input_hint">Enter text</string>
+    <string name="translation_result_title">Result:</string>
+
+    <!-- netflix -->
+    <string name="netflix_title_release_date">Released:</string>
+</resources>

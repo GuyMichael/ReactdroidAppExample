@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="16dp">
+
+    <TextView
+        android:id="@+id/country_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="12dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textSize="16sp"
+        android:fontFamily="@string/font_roboto_medium"
+        tools:text="Country Name"
+    />
+
+    <TextView
+        android:id="@+id/country_native_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/country_name"
+        android:layout_toEndOf="@+id/country_name"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="100dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textSize="12sp"
+        tools:text="Native country name"
+    />
+
+    <TextView
+        android:id="@+id/country_population"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/country_name"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="12dp"
+        android:textSize="12sp"
+        android:drawableEnd="@drawable/ic_popuplation"
+        android:drawablePadding="4dp"
+        tools:text="30,000,000"
+        />
+
+    <TextView
+        android:id="@+id/country_capital"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/country_name"
+        android:layout_alignStart="@+id/country_name"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="24dp"
+        android:textSize="12sp"
+        tools:text="Capital: Capital Name"
+    />
+
+    <TextView
+        android:id="@+id/country_region"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/country_capital"
+        android:layout_alignEnd="@+id/country_population"
+        android:textSize="12sp"
+        tools:text="Asia"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black05"
+        android:layout_alignParentBottom="true"
+        />
+    <!--NOCOMMIT as dividers-->
+
+</RelativeLayout>

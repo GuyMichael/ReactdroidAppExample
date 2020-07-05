@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppTheme colors -->
+
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorPrimary55">#8C2196F3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <color name="dayNightCursor">@color/colorPrimary</color>
+
+        <!--DayNight-->
+    <color name="dayNightPrimary">@color/colorPrimary</color>
+
+        <!--TextView-->
+    <color name="textPrimaryBlack">@color/dayNightBlack87NoTransparency</color>
+    <color name="textPrimaryBlackPressed">#B3000000</color>
+    <color name="textSecondaryGray">#99000000</color>
+    <color name="textSecondaryGrayPressed">#80000000</color>
+
+        <!--EditText-->
+    <color name="et_primary">@color/black87NoTransparency</color>
+    <color name="et_disabled">#99000000</color>
+    <color name="et_error">#e83e35</color>
+    <color name="et_hint">@color/black38NoTransparency</color>
+            <!--DayNight-->
+
+        <!--Button-->
+    <color name="btnTextColor">@android:color/white</color>
+    <color name="secondaryBtnBackground">@android:color/white</color>
+    <color name="secondaryBtnBackground_pressed">#DFDEDE</color>
+    <color name="btn_disabled">#D2D4D5</color>
+    <color name="transparentBtnTextPressed">#3B5998</color>
+    <color name="btn_cta_primary_bg">#2fc247</color>
+    <color name="btn_cta_primary_bg_pressed">#009014</color>
+
+        <!--Card-->
+    <color name="card_bg">@color/white</color>
+
+    <!--List-->
+    <color name="listOverScroll">@color/black10NoTransparency</color>
+    <color name="cardList_bg">#e6e6e6</color>
+
+
+
+    <!-- Countries -->
+    <color name="countries_search_background">#eeeeee</color>
+
+
+    <!-- Camera -->
+    <color name="camera_dissolve_foreground">@color/black38NoTransparency</color>
+
+</resources>

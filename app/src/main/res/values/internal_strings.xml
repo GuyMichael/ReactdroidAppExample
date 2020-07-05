@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="font_roboto_medium" translatable="false">sans-serif-medium</string>
+    <string name="font_roboto" translatable="false">sans-serif</string>
+    <string name="deepLinkBaseUrl" translatable="false">app.componentappexample.com</string><!--TODO change-->
+
+    <string name="transition_name_default_shared_element" translatable="false">defaultShared</string>
+</resources>

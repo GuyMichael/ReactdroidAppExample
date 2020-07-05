@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:layout_marginLeft="@dimen/cardList_padding_horizontal"
+    android:layout_marginRight="@dimen/cardList_padding_horizontal"
+    android:elevation="@dimen/card_elevation"
+    android:foreground="@android:color/transparent"
+    app:cardBackgroundColor="@android:color/transparent"
+    app:cardCornerRadius="@dimen/card_radius"
+    app:cardElevation="@dimen/card_elevation"
+    app:cardUseCompatPadding="true">
+    <!-- NOCOMMIT convert marginTop to divider -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/card_bg"
+        android:paddingTop="8dp"
+        android:paddingBottom="16dp"
+        >
+
+        <ImageView
+            android:id="@+id/cat_img"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:scaleType="centerCrop"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            />
+        <!-- content description set in code -->
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
