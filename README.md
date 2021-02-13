@@ -149,5 +149,36 @@ data class MainPageProps(val welcomeDialogShown: Boolean) : OwnProps() {
 }
 ```
 
+This concludes the high level app structure. We now have a Main page that can handle showing some Dialog over
+all other Drawer-pages, by being *connected* to the *Store* to automatically (re) *render* (show/hide the dialog)
+if/when the *GeneralReducerKey.welcomeDialogShown* state-key changes its (boolean) value.
+This means that if some inner Drawer-page changes that key's value to *false* (by *dispatching* to the *Store*),
+this Dialog will be hidden - no other code is necessary - no direct setter on that dialog, no global variables somewhere,
+and no risk of leaking the *Context*.
 
+
+### Third Step - Creating our first feature - Countries Search
+We can finally start adding features (Drawer pages).
+Our first feature will be a simple list of (all) [countries](https://github.com/GuyMichael/ReactiveAppExample/tree/master/app/src/main/java/com/guymichael/componentapplicationexample/ui/countries), along with a 'searchbox' to let user
+type text. Upon typing, the list will auto-filter to show only relevant countries.
+Oh and, of course, we will *fetch* the countries using some API.
+
+Let's define the Countries Fragment, which will hold a Countries Page.
+Yes, same approach as with the MainActivity/Page above.
+
+```kotlin
+  class CountriesFragment : BaseFragment<EmptyOwnProps, AComponent<EmptyOwnProps, *, *>, EmptyOwnProps>() {
+
+    private lateinit var cCountriesPage: CountriesPage
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?)
+        : View {
+
+        return inflater.inflate(R.layout.fragment_countries, container, false).also {
+            cCountriesPage = CountriesPage(it)
+            cCountriesPage.onRender(EmptyOwnProps)
+        }
+    }
+}
+```
 [Countries](https://github.com/GuyMichael/ReactiveAppExample/blob/master/app/src/main/java/com/guymichael/componentapplicationexample/ui/countries)
