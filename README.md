@@ -25,7 +25,7 @@ So basically the MainActivity and the [MainPage](https://github.com/GuyMichael/R
 
 ### First Step - Creating the Main Activity
 First, we will create the MainActivity and MainPage of the app, which handle the app's frame (Toolbar, Drawer, FAB and a Dialog that can be shown on top of all Drawer pages).
-MainActivity extends ReactiveApp's [*BaseActivity*](https://github.com/GuyMichael/ReactiveApp/blob/master/reactiveapp/src/main/java/com/guymichael/reactiveapp/activities/BaseActivity.kt) which extends Reactdroid's [*ComponentActivity*](https://github.com/GuyMichael/Reactdroid/blob/master/reactdroid/src/main/java/com/guymichael/reactdroid/core/activity/ComponentActivity.kt), which basically makes the native Android Activity behave just like an *AComponent*.
+MainActivity extends ReactiveApp's *BaseActivity* which extends Reactdroid's [*ComponentActivity*](https://github.com/GuyMichael/Reactdroid/blob/master/reactdroid/src/main/java/com/guymichael/reactdroid/core/activity/ComponentActivity.kt), which basically makes the native Android Activity behave just like an *AComponent*. If you're not yet familiar with them, you can read more in [ReactiveApp's turotial](https://github.com/GuyMichael/ReactiveApp)
 While it is possible to use an Activity (both the native one and the BaseActivity/ComponentActivity) to manipulate the UI, it is not encouraged.
 Activities supply Context, but they are not a UI building block.
 So what we will do is, wrap the (Main) Activity's layout (ViewGroup) with an *AComponent* - which we will call - MainPage.
@@ -33,7 +33,7 @@ MainPage is an *AComponent* and so will be the one in charge of MainActivity's l
 In fact, as Jetpack's Navigation handles the Drawer's Fragment navigation (and Toolbar's back) [in xml only](https://github.com/GuyMichael/ReactiveAppExample/blob/master/app/src/main/res/navigation/mobile_navigation.xml), the MainPage will practically need to handle
 the Dialog alone.
 
-Here is a simplified version of the MainActivity:
+Below is a simplified version of the MainActivity with some explanation. More detailed explanation can be found in the Reactdroid and ReactiveApp tutorials.
 ```kotlin
 
   class MainActivity
@@ -78,6 +78,75 @@ Here is a simplified version of the MainActivity:
           )
       }
   }
+```
+As you can see, there's not much code here. Merely implementations of (abstract) methods defined in ComponentActivity and BaseActivity which help
+defining the layout, page and props handling between the Intent, the (Main) activity props and the (Main) page props.
+Don't worry if you don't fully understand everything. We will repeat similar steps over and over when we'll define the features -
+which built using Fragments and (AComponent) pages - and use the same technique.
+
+### Second Step - Creating the Main Page
+As mentioned above and seen in above code, the Main page is the *AComponent* which is in charge of the Main Activity's UI.
+```kotlin
+class MainPage(v: View) : ASimpleComponent<MainPageProps>(v) {
+
+    //this is how we define child components from within parent components:
+    // withAlertDialog uses Kotlin Extension and so is a member function of any AComponent.
+    // It creates a CAlertDialog (a Dialog AComponent)
+    private val cDialog = withAlertDialog(
+        //when dialog is dismissed, dispatch to update the global state (shown = false)
+        onDismiss = { MainStore.dispatch(GeneralReducerKey.welcomeDialogShown, false) }
+    )
+
+    //inside render - call onRender of all child components.
+    // In this case, only the dialog
+    override fun render() {
+        cDialog.onRender(AlertDialogProps(
+            shown = props.welcomeDialogShown
+            , title = getString(R.string.home_dialog_title)
+            , message = getString(R.string.home_dialog_msg)
+            
+            //as positive btn clicks auto-dismiss the dialog we can pass null
+            // as the click-listener.
+            // We can return an APromise instead, to delay the dismissal for until
+            // that promise finishes
+            , positiveBtn = getString(R.string.dialog_btn_ok) to null
+        ))
+    }
+
+
+
+    //this is how it's best to 'connect' an AComponent to the Store.
+    // We just define a non-connected AComponent with the props it needs,
+    // then we provide a 'connected' creator inside the companion object,
+    // like a 'static' Java method
+    companion object {
+    
+        @JvmStatic
+        fun connected(v: View): AHOC<EmptyOwnProps, *, *, *, EmptyOwnState> {
+            return connect(
+                MainPage(v)
+                , MainPageProps.Companion::mapStateToProps
+                , { MainStore }
+            )
+        }
+    }
+}
+
+
+//and here is how we define props properly, also with the same approach
+// of adding a helper method inside the companion object, to help connect
+// that component
+data class MainPageProps(val welcomeDialogShown: Boolean) : OwnProps() {
+    override fun getAllMembers() = listOf(welcomeDialogShown)
+
+    companion object {
+        fun mapStateToProps(state: GlobalState, apiProps: EmptyOwnProps): MainPageProps {
+            return MainPageProps(
+                welcomeDialogShown = GeneralReducerKey.welcomeDialogShown.getBoolean(state) == true
+            )
+        }
+    }
+}
 ```
 
 
