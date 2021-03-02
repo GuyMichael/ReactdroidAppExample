@@ -1,9 +1,12 @@
 package com.guymichael.componentapplicationexample
 
 import com.guymichael.apromise.APromise
-import com.guymichael.reactiveapp.activities.BaseActivity
 import com.guymichael.reactdroid.core.Utils
+import com.guymichael.reactdroid.core.letIf
 import com.guymichael.reactdroid.core.model.AComponent
+import com.guymichael.reactdroid.core.withAutoCancel
+import com.guymichael.reactdroid.core.withGlobalErrorHandling
+import com.guymichael.reactiveapp.activities.BaseActivity
 import io.reactivex.rxjava3.disposables.Disposable
 import java.lang.ref.WeakReference
 
@@ -36,12 +39,18 @@ fun <T> APromise<T>.withBlockUiProgress(context: BaseActivity<*, *, *>): APromis
 fun APromise<*>.execute(component: AComponent<*, *, *>
         , autoCancel: Boolean = false
         , withBlockUiProgress: Boolean = false
-        , handleErrorMessage: Boolean = true)
-    : Disposable {
+        , handleErrorMessage: Boolean = true
+    ): Disposable {
 
-    return (if (withBlockUiProgress) {
-        this.withBlockUiProgress(component)
-    } else {
-        this
-    }).execute(component.mView, autoCancel, handleErrorMessage)
+    return this
+        .letIf({autoCancel}) {
+            it.withAutoCancel(component)
+        }
+        .letIf({withBlockUiProgress}) {
+            it.withBlockUiProgress(component)
+        }
+        .letIf({handleErrorMessage}) {
+            it.withGlobalErrorHandling(component)
+        }
+        .execute()
 }
