@@ -27,8 +27,8 @@ class MainPage(v: View) : ASimpleComponent<MainPageProps>(v) {
             props.welcomeDialogShown
             , title = getString(R.string.home_dialog_title)
             , message = getString(R.string.home_dialog_msg)
-            , okBtn = getString(R.string.dialog_btn_ok) to { _ -> null}
-            , cancelBtn = null
+            , positiveBtn = getString(R.string.dialog_btn_ok) to { _ -> null}
+            , negativeBtn = null
         ))
     }
 

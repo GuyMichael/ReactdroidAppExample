@@ -5,8 +5,8 @@ import com.guymichael.componentapplicationexample.network.client.translations.Ap
 import com.guymichael.componentapplicationexample.network.client.translations.request.ApiTranslateGet
 import com.guymichael.componentapplicationexample.network.client.translations.response.ApiResponseTranslations
 import com.guymichael.componentapplicationexample.network.model.ApiClientName
-import com.guymichael.componentapplicationexample.network.of
 import com.guymichael.componentapplicationexample.store.datatype.DataTypeTranslation
+import com.guymichael.kotlinflux.extensions.data.withDataDispatch
 import com.guymichael.kotlinreact.Logger
 import com.guymichael.reactiveapp.network.model.ApiError
 import com.guymichael.reactiveapp.network.model.ApiRequest
@@ -23,28 +23,24 @@ object TranslationLogic {
             , targetLang: String = "pt", sourceLang: String = "auto"
         ): APromise<ApiResponseTranslations> {
 
-        return ApiRequest.of(
-            ApiTranslateGet::class     //select retrofit service (interface)
-            , ApiClientName.TRANSLATIONS
-            , { it.translate(input, targetLang, sourceLang) }       //execute the api (interface method)
-            , DataTypeTranslation       //define how to dispatch response data to a Store (DataReducer)
-                                        // and persist (e.g. SharedPrefs, SQL)
-
-            , { it.outputs } //extract relevant data to dispatch
-            , merge = true                                            //append to current translations
-        )
-
+                //select retrofit service (interface) & ApiClient
+        return ApiRequest.of(ApiTranslateGet::class, ApiClientName.TRANSLATIONS) {
+                it.translate(input, targetLang, sourceLang) //execute the api (interface method)
+            }
+            .withDataDispatch(       //add Store data dispatch
+                DataTypeTranslation
+                , { it.outputs }                            //select relevant data to dispatch
+                , merge = true                              //append to existing translations
+            )
         .catch { e ->
-            ApiError.parseMany(e).forEach { when(it.code) {
-                ApiResponseCodeTranslations.UNAUTHORIZED -> Logger.e(
-                    TranslationLogic::class, "fetchAndDispatchTranslations() failed: " +
-                            "unauthorized.\nReplace ApiTranslateGet's 'authorizationKey' argument with" +
-                            "a key from here (Sign Up required for free) :\n" +
-                            "https://rapidapi.com/systran/api/systran-io-translation-and-nlp"
+            ApiError.parseOrNull(e)?.takeIf { it.code == ApiResponseCodeTranslations.UNAUTHORIZED }?.also {
+                Logger.e(TranslationLogic::class
+                    , "fetchAndDispatchTranslations() failed: " +
+                    "unauthorized.\nReplace ApiTranslateGet's 'authorizationKey' argument with" +
+                    "a key from here (Sign Up required for free) :\n" +
+                    "https://rapidapi.com/systran/api/systran-io-translation-and-nlp"
                 )
-
-                else-> {}
-            }}
+            }
         }
     }
 }

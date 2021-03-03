@@ -1,17 +1,14 @@
 package com.guymichael.componentapplicationexample.ui.components.camera
 
 import androidx.annotation.IdRes
-import androidx.camera.camera2.Camera2Config
-import androidx.camera.core.*
+import androidx.camera.core.CameraXConfig
 import androidx.camera.view.CameraView
 import androidx.lifecycle.LifecycleOwner
-import com.guymichael.apromise.APromise
 import com.guymichael.kotlinreact.model.ownstate.BooleanState
-import com.guymichael.kotlinreact.setState
-import com.guymichael.reactiveapp.BuildConfig
 import com.guymichael.reactdroid.core.Utils
-import com.guymichael.reactdroid.core.execute
 import com.guymichael.reactdroid.core.model.AComponent
+import com.guymichael.reactdroid.core.withAutoCancel
+import com.guymichael.reactiveapp.BuildConfig
 
 /**
  * A component for androidx's camera-x (uses Android's camera2 internally).
@@ -46,9 +43,9 @@ class CCamera(v: CameraView) : AComponent<CameraProps, BooleanState, CameraView>
     override fun createInitialState(props: CameraProps) = BooleanState(false) //is surface ready
 
     override fun componentDidMount() {
-        //NOCOMMIT for tests only
-        CameraLogic.initExtensions()
-            .thenAwaitWithContextOrCancel(Utils.getActivity(mView.context)!!) { (context, _) ->
+        //TODO for tests only
+        /*CameraLogic.initExtensions()
+            .thenAwaitWithContextOrCancel(Utils.getActivity(mView.context)!!) { context, _ ->
                 if (CameraX.isInitialized()) APromise.of()
                 else APromise.from( CameraX.initialize(context, Camera2Config.defaultConfig()) )
                     .thenMap { Unit }
@@ -56,7 +53,7 @@ class CCamera(v: CameraView) : AComponent<CameraProps, BooleanState, CameraView>
             .then {
                 setState(true)
             }
-            .execute(this)
+            .execute(this)*/
     }
 
     override fun componentWillUnmount() {
@@ -77,7 +74,9 @@ class CCamera(v: CameraView) : AComponent<CameraProps, BooleanState, CameraView>
                         , it
                         , props.imageCapture?.invoke(it)
                         , props.aspectRatio
-                    ).execute(this)
+                    )
+                    .withAutoCancel(this)
+                    .execute()
                 }
             }
         }
@@ -86,13 +85,13 @@ class CCamera(v: CameraView) : AComponent<CameraProps, BooleanState, CameraView>
     private fun stopCamera() {
         if (isCameraActive) {
             isCameraActive = false
-            CameraX.shutdown()
+//            CameraX.shutdown() TODO
         }
     }
 
     private fun releaseCamera() {
         if (isHoldingCamera) {
-            CameraX.shutdown()
+//            CameraX.shutdown() TODO
             isCameraActive = false
             isHoldingCamera = false
         }

@@ -1,6 +1,7 @@
 package com.guymichael.componentapplicationexample.ui.components.camera
 
 import android.Manifest
+import android.content.Context
 import androidx.camera.core.*
 import androidx.camera.extensions.BokehImageCaptureExtender
 import androidx.camera.extensions.ExtensionsManager
@@ -22,9 +23,9 @@ object CameraLogic {
     private var extensionsInitialized = false
 
 
-    fun initExtensions(): APromise<Unit> {
+    fun initExtensions(context: Context): APromise<Unit> {
         return if (extensionsInitialized) APromise.of() else {
-            APromise.from(ExtensionsManager.init())
+            APromise.from(ExtensionsManager.init(context))
                 .thenMap {
                     extensionsInitialized = true
                 }
@@ -53,9 +54,14 @@ object CameraLogic {
                 it.bindToLifecycle(lifecycleOwner, cameraSelector, *useCases.toTypedArray())
             }.then { camera ->
                 //https://developer.android.com/jetpack/androidx/releases/camera#camera2-core-1.0.0-alpha07
-                previewView.preferredImplementationMode = PreviewView.ImplementationMode.TEXTURE_VIEW
+
+                //TODO
+//                previewView.preferredImplementationMode = PreviewView.ImplementationMode.TEXTURE_VIEW
+
 //                preview.setSurfaceProvider(previewView.createSurfaceProvider(camera.cameraInfo))
-                preview.setSurfaceProvider(previewView.createSurfaceProvider(null))
+
+                //TODO
+//                preview.setSurfaceProvider(previewView.createSurfaceProvider(null))
             }
     }
 

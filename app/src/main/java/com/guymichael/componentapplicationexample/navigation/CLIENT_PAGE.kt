@@ -4,11 +4,11 @@ import com.guymichael.apromise.APromise
 import com.guymichael.componentapplicationexample.withBlockUiProgress
 import com.guymichael.kotlinreact.model.EmptyOwnProps
 import com.guymichael.kotlinreact.model.OwnProps
-import com.guymichael.reactiveapp.activities.BaseActivity
 import com.guymichael.reactdroid.core.activity.ComponentActivity
 import com.guymichael.reactdroid.extensions.navigation.ActivityLogic
 import com.guymichael.reactdroid.extensions.navigation.ClientPageIntf
 import com.guymichael.reactdroid.extensions.navigation.model.NavigationAction
+import com.guymichael.reactiveapp.activities.BaseActivity
 import kotlin.reflect.KClass
 
 /**
@@ -99,7 +99,7 @@ enum class CLIENT_PAGE(
         , openPage = { context, action ->
             //open (make sure) MainActivity, then navigate to the fragment inside
             MAIN.openPage(context, action.cloneWith(EmptyOwnProps))
-                .thenMapWithContextOrCancel(context) { (_, mainActivity) ->
+                .thenMapWithContextOrCancel(context) { _, mainActivity ->
                     //this method throws, in which case the wrapping promise will be rejected as expected
                     (mainActivity as BaseActivity<*, *, *>).openDrawerDeepLink(
                         com.guymichael.componentapplicationexample.R.id.nav_camera
@@ -157,6 +157,6 @@ openActivity(context: ComponentActivity<*>, cls: KClass<T>, action: NavigationAc
 private fun <P : OwnProps> NavigationAction<*>.cloneWith(newProps: P): NavigationAction<P> {
     return NavigationAction(
         newProps
-        , inOutAnimations, transitions, forResult_requestCode, showLoader
+        , inOutAnimations, transitions, forResult_requestCode, showLoader, intentFlags
     )
 }

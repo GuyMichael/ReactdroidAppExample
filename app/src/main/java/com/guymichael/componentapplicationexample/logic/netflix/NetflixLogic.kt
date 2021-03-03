@@ -9,10 +9,10 @@ import com.guymichael.componentapplicationexample.network.client.netflix.request
 import com.guymichael.componentapplicationexample.network.client.netflix.response.ApiResponseNetflixGenres
 import com.guymichael.componentapplicationexample.network.client.netflix.response.ApiResponseNetflixTitles
 import com.guymichael.componentapplicationexample.network.model.ApiClientName
-import com.guymichael.componentapplicationexample.network.of
 import com.guymichael.componentapplicationexample.store.MainStore
 import com.guymichael.componentapplicationexample.store.datatype.DataTypeNetflixGenre
 import com.guymichael.componentapplicationexample.store.datatype.DataTypeNetflixTitle
+import com.guymichael.kotlinflux.extensions.data.withDataDispatch
 import com.guymichael.kotlinflux.model.GlobalState
 import com.guymichael.kotlinreact.Logger
 import com.guymichael.reactiveapp.network.model.ApiError
@@ -33,38 +33,35 @@ object NetflixLogic {
         )
 
         .catch { e ->
-            ApiError.parseMany(e).forEach { when(it.code) {
-                ApiResponseCodeNetflix.UNAUTHORIZED -> Logger.e(
-                    NetflixLogic::class, "fetchAndDispatchGenres() failed: " +
-                            "unauthorized.\nReplace ApiCountriesGet's 'authorizationKey' argument with" +
-                            "a key from here (Sign Up required for free) :\n" +
-                            "https://rapidapi.com/unogs/api/unogs"
+            ApiError.parseOrNull(e)?.takeIf { it.code == ApiResponseCodeNetflix.UNAUTHORIZED }?.also {
+                Logger.e(NetflixLogic::class
+                    , "fetchAndDispatchGenres() failed: " +
+                    "unauthorized.\nReplace ApiCountriesGet's 'authorizationKey' argument with" +
+                    "a key from here (Sign Up required for free) :\n" +
+                    "https://rapidapi.com/unogs/api/unogs"
                 )
-
-                else-> {}
-            }}
+            }
         }
     }
 
     fun fetchAndDispatchTitles(): APromise<ApiResponseNetflixTitles> {
-        return ApiRequest.of(ApiNetflixTitlesGet::class, ApiClientName.NETFLIX
-            , { it.advancedSearch() }
-            , DataTypeNetflixTitle
-            , { it.ITEMS } //append titles
-            , merge = true
-        )
+        return ApiRequest.of(ApiNetflixTitlesGet::class, ApiClientName.NETFLIX) {
+                it.advancedSearch()
+            }.withDataDispatch(
+                DataTypeNetflixTitle
+                , { it.ITEMS } //append titles
+                , merge = true
+            )
 
         .catch { e ->
-            ApiError.parseMany(e).forEach { when(it.code) {
-                ApiResponseCodeNetflix.UNAUTHORIZED -> Logger.e(
-                    NetflixLogic::class, "fetchAndDispatchTitles() failed: " +
-                            "unauthorized.\nReplace ApiCountriesGet's 'authorizationKey' argument with" +
-                            "a key from here (Sign Up required for free) :\n" +
-                            "https://rapidapi.com/unogs/api/unogs"
+            ApiError.parseOrNull(e)?.takeIf { it.code == ApiResponseCodeNetflix.UNAUTHORIZED }?.also {
+                Logger.e(NetflixLogic::class
+                    , "fetchAndDispatchTitles() failed: " +
+                    "unauthorized.\nReplace ApiCountriesGet's 'authorizationKey' argument with" +
+                    "a key from here (Sign Up required for free) :\n" +
+                    "https://rapidapi.com/unogs/api/unogs"
                 )
-
-                else-> {}
-            }}
+            }
         }
     }
 

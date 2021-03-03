@@ -47,6 +47,9 @@ object ApplicationStartupLogic {
         val client = OkHttpClient.Builder().addInterceptor(
             HttpLoggingInterceptor().also {
                 it.level = HttpLoggingInterceptor.Level.BODY
+
+                //redact headers to prevent leaking sensitive data
+                it.redactHeader("x-api-key")
             }
         ).build()
 
@@ -63,6 +66,9 @@ object ApplicationStartupLogic {
         val client = OkHttpClient.Builder().addInterceptor(
             HttpLoggingInterceptor().also {
                 it.level = HttpLoggingInterceptor.Level.BODY
+
+                //redact headers to prevent leaking sensitive data
+                it.redactHeader("x-rapidapi-key")
             }
         ).build()
 
@@ -82,6 +88,9 @@ object ApplicationStartupLogic {
         val client = OkHttpClient.Builder().addInterceptor(
             HttpLoggingInterceptor().also {
                 it.level = HttpLoggingInterceptor.Level.BODY
+
+                //redact headers to prevent leaking sensitive data
+                it.redactHeader("x-rapidapi-key")
             }
         ).build()
 
@@ -98,6 +107,9 @@ object ApplicationStartupLogic {
         val client = OkHttpClient.Builder().addInterceptor(
             HttpLoggingInterceptor().also {
                 it.level = HttpLoggingInterceptor.Level.BODY
+
+                //redact headers to prevent leaking sensitive data
+                it.redactHeader("x-rapidapi-key")
             }
         ).build()
 

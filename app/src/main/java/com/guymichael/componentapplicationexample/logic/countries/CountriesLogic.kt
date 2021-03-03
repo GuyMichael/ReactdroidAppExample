@@ -22,16 +22,14 @@ object CountriesLogic {
         )
 
         .catch { e ->
-            ApiError.parseMany(e).forEach { when(it.code) {
-                ApiResponseCodeCountries.UNAUTHORIZED -> Logger.e(
-                    CountriesLogic::class, "fetchAndDispatchCountries() failed: " +
-                            "unauthorized.\nReplace ApiCountriesGet's 'authorizationKey' argument with" +
-                            "a key from here (Sign Up required for free) :\n" +
-                            "https://rapidapi.com/apilayernet/api/rest-countries-v1"
+            ApiError.parseOrNull(e)?.takeIf { it.code == ApiResponseCodeCountries.UNAUTHORIZED }?.also {
+                Logger.e(CountriesLogic::class
+                    , "fetchAndDispatchCountries() failed: " +
+                    "unauthorized.\nReplace ApiCountriesGet's 'authorizationKey' argument with" +
+                    "a key from here (Sign Up required for free) :\n" +
+                    "https://rapidapi.com/apilayernet/api/rest-countries-v1"
                 )
-
-                else-> {}
-            }}
+            }
         }
     }
 

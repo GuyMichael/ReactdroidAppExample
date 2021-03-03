@@ -14,7 +14,6 @@ import com.guymichael.componentapplicationexample.withBlockUiProgress
 import com.guymichael.kotlinflux.model.GlobalState
 import com.guymichael.kotlinreact.model.props.DataProps
 import com.guymichael.kotlinreact.model.props.LongProps
-import com.guymichael.reactiveapp.utils.AndroidUtils
 import com.guymichael.reactdroid.core.model.AComponent
 import com.guymichael.reactdroid.core.model.AViewComponent
 import com.guymichael.reactdroid.extensions.components.list.model.ListItemProps
@@ -22,6 +21,7 @@ import com.guymichael.reactdroid.extensions.components.list.model.ListProps
 import com.guymichael.reactdroid.extensions.components.list.withList
 import com.guymichael.reactdroidflux.model.connect
 import com.guymichael.reactdroidflux.model.withDataManager
+import com.guymichael.reactiveapp.utils.AndroidUtils
 
 /**
  * Shows Netflix genres OR titles according to (own) state.
@@ -86,7 +86,7 @@ class NetflixCatalogPage(v: View) : AViewComponent<LongProps, NetflixCatalogOwnS
         return if (ownState.genreId == null) {
             //genre click
             setState(NetflixCatalogOwnState(
-                genreId = (props.props as DataProps<NetflixGenreData>).data.titleIds?.firstOrNull()
+                genreId = (props.props as DataProps<NetflixGenreData>).data.titleIds.firstOrNull()
             ))
             true
         } else {

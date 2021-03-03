@@ -56,8 +56,8 @@ object GlobalErrorHandler {
     @JvmStatic
     fun initPromiseHandler() {
         APromise.setGlobalAutoErrorHandler { context: Activity, e: Throwable ->
-            val apiErrors: List<ApiError> = ApiError.parseMany(e)
-            if (apiErrors.isEmpty()) {
+            val apiError: ApiError? = ApiError.parseOrNull(e)
+            if (apiError == null) {
                 if (BuildConfig.DEBUG) {
                     AndroidUtils.toast(context
                         , "some promise error (${e.javaClass.simpleName}), message: ${e.message}"
@@ -65,18 +65,16 @@ object GlobalErrorHandler {
                     )
                 }
             } else {
-                for (apiError in apiErrors) {
-                    val apiMessage: String? = (apiError.errorBody as? ApiResponseGeneralError)?.message
+                val apiMessage: String? = (apiError.errorBody as? ApiResponseGeneralError)?.message
 
-                    val msg: String = if (BuildConfig.DEBUG) {
-                        "${apiError.message}, code: ${apiError.code}, message: $apiMessage"
-                    } else {
-                        apiMessage ?: apiError.message
-                    }
+                val msg: String = if (BuildConfig.DEBUG) {
+                    "${apiError.message}, code: ${apiError.code}, message: $apiMessage"
+                } else {
+                    apiMessage ?: apiError.message
+                }
 
-                    if (msg.isNotBlank()) {
-                        AndroidUtils.toast(context, msg, true)
-                    }
+                if (msg.isNotBlank()) {
+                    AndroidUtils.toast(context, msg, true)
                 }
             }
         }

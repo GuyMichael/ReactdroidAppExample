@@ -1,11 +1,13 @@
 package com.guymichael.componentapplicationexample.ui.qrcode
 
 import android.util.SparseArray
-import android.view.SurfaceHolder
 import android.view.View
 import com.google.android.gms.vision.barcode.Barcode
 import com.guymichael.componentapplicationexample.R
 import com.guymichael.componentapplicationexample.ui.components.camera.CameraLogic
+import com.guymichael.componentapplicationexample.ui.qrcode.component.QRScannerProps
+import com.guymichael.componentapplicationexample.ui.qrcode.component.model.SurfaceChangeInfo
+import com.guymichael.componentapplicationexample.ui.qrcode.component.withQRCodeScanner
 import com.guymichael.kotlinreact.model.EmptyOwnProps
 import com.guymichael.kotlinreact.model.EmptyOwnState
 import com.guymichael.reactdroid.core.model.AComponent
@@ -13,8 +15,6 @@ import com.guymichael.reactdroid.core.model.AHOC
 import com.guymichael.reactdroid.extensions.animation.AnimUtils
 import com.guymichael.reactdroid.extensions.components.permissions.PermissionProps
 import com.guymichael.reactdroid.extensions.components.permissions.WithPermissions
-import com.guymichael.reactiveapp.reactdroid.components.qrscanner.QRScannerProps
-import com.guymichael.reactiveapp.reactdroid.components.qrscanner.withQRCodeScanner
 import com.guymichael.reactiveapp.utils.AndroidUtils
 
 class QrCodePage(v: View) : AComponent<EmptyOwnProps, EmptyOwnState, View>(v) {
@@ -29,7 +29,7 @@ class QrCodePage(v: View) : AComponent<EmptyOwnProps, EmptyOwnState, View>(v) {
         AndroidUtils.toast(mView.context, barCodes.valueAt(0).displayValue)
     }
 
-    private fun onSurfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
+    private fun onSurfaceChanged(holder: SurfaceChangeInfo) {
         //reveal the camera slowly (called on camera start and size changes) by dissolving the foreground
         vDissolveForeground.also {
             it.alpha = 1F
