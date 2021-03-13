@@ -3,8 +3,8 @@ package com.guymichael.componentapplicationexample.ui
 import android.view.View
 import com.guymichael.componentapplicationexample.R
 import com.guymichael.componentapplicationexample.store.MainStore
+import com.guymichael.componentapplicationexample.store.dispatchTyped
 import com.guymichael.componentapplicationexample.store.reducers.WelcomeDialogShown
-import com.guymichael.componentapplicationexample.store.reducers.dispatchToGeneralReducer
 import com.guymichael.kotlinreact.model.EmptyOwnProps
 import com.guymichael.kotlinreact.model.EmptyOwnState
 import com.guymichael.reactdroid.core.getString
@@ -20,7 +20,7 @@ class MainPage(v: View) : ASimpleComponent<MainPageProps>(v) {
     // (whatever it is) and show a dialog on it. Good for dialogs which should be shown no matter what
     // (e.g. loggedIn or not, got from a deepLink to non-main page, etc.)
     private val cDialog = withAlertDialog(
-        onDismiss = { MainStore.dispatchToGeneralReducer(WelcomeDialogShown, false) }
+        onDismiss = { MainStore.dispatchTyped(WelcomeDialogShown, false) }
     )
 
     override fun render() {
