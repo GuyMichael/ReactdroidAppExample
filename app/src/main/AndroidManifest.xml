@@ -22,7 +22,7 @@
         <!--android:usesCleartextTraffic="true" makes sure webviews work-->
 
         <!-- SplashScreen -->
-        <activity android:name=".ui.SplashScreen"
+        <activity android:name=".ui.SplashScreenComposeActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
