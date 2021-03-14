@@ -1,9 +1,7 @@
 package com.guymichael.componentapplicationexample.store.reducers
 
-import com.guymichael.componentapplicationexample.store.MainStore
 import com.guymichael.componentapplicationexample.store.TypedStoreKey
 import com.guymichael.kotlinflux.model.GlobalState
-import com.guymichael.kotlinflux.model.actions.Action
 import com.guymichael.kotlinflux.model.reducers.Reducer
 
 /**
@@ -20,12 +18,8 @@ sealed class GeneralReducerKey<T> : TypedStoreKey<T> {
     override fun getName() = this.javaClass.simpleName
     override fun getReducer() = GeneralReducer
 }
-//inject specific dispatch method to the MainStore, for typed dispatching
-fun <T> MainStore.dispatchToGeneralReducer(key: GeneralReducerKey<T>, value: T) {
-    this.dispatch(Action(key, value))
-}
 /* define all the (sealed) keys */
 object WelcomeDialogShown : GeneralReducerKey<Boolean>()
-    //note: this usage enforces the state to include a non-null Boolean, meaning you must
-    //      provide an initial value inside getSelfDefaultState().
-    //      Otherwise, we could use GeneralReducerKey<Boolean?>() to allow nullable values
+//note: this usage enforces the state to include a non-null Boolean, meaning you must
+//      provide an initial value inside getSelfDefaultState().
+//      Otherwise, we could use GeneralReducerKey<Boolean?>() to allow nullable values
