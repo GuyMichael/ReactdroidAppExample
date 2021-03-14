@@ -22,11 +22,18 @@ class SplashScreenComposeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //a screen with 1 column - with 1 text
         setContent {
             Row {
                 Column {
                     ConnectedSplashScreen() //connect(Composable)
                     SplashScreenCompose2()  //Store.observeAsState
+                }
+
+                //this one should not re-render...
+                Column {
+                    SplashScreenCompose(TextProps(WelcomeDialogShown.get(MainStore.state).toString()))
                 }
 
                 //if this one is enabled - the whole Row will re-render!
@@ -35,23 +42,26 @@ class SplashScreenComposeActivity : AppCompatActivity() {
                     SplashScreenCompose(props)
                 }*/
 
-                //this one should not re-render...
-                Column {
-                    SplashScreenCompose(TextProps(WelcomeDialogShown.get(MainStore.state).toString()))
-                }
+                //if this one is enabled - the whole Row will re-render!
+                /*Column {
+                    val shownAsString by MainStore.observeValue { WelcomeDialogShown.get(it).toString() }
+                    Text(shownAsString)     //will auto-render when WelcomeDialogShown's value changes in the Store
+                }*/
             }
-
         }
 
-        APromise.delay(5000) {
-            MainStore.dispatchTyped(WelcomeDialogShown, false)
-        }
 
-        APromise.delay(10000) {
-            MainStore.dispatchTyped(WelcomeDialogShown, true)
-        }
+
+        //simulate MainStore changes - from anywhere in the app
+        APromise.ofDelay(5000)
+            .then { MainStore.dispatchTyped(WelcomeDialogShown, false) }
+            .delay(5000)
+            .then { MainStore.dispatchTyped(WelcomeDialogShown, true) }
+            .execute()
     }
 }
+
+
 
 @Composable
 private fun SplashScreenCompose(props: TextProps) {
