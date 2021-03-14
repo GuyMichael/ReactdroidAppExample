@@ -11,8 +11,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
 import com.guymichael.apromise.APromise
 import com.guymichael.componentapplicationexample.store.MainStore
+import com.guymichael.componentapplicationexample.store.dispatchTyped
 import com.guymichael.componentapplicationexample.store.reducers.WelcomeDialogShown
-import com.guymichael.componentapplicationexample.store.reducers.dispatchToGeneralReducer
 import com.guymichael.componentapplicationexample.ui.components.jetpackcompose.core.connect
 import com.guymichael.componentapplicationexample.ui.components.jetpackcompose.core.observeAsState
 import com.guymichael.kotlinreact.Logger
@@ -44,11 +44,11 @@ class SplashScreenComposeActivity : AppCompatActivity() {
         }
 
         APromise.delay(5000) {
-            MainStore.dispatchToGeneralReducer(WelcomeDialogShown, false)
+            MainStore.dispatchTyped(WelcomeDialogShown, false)
         }
 
         APromise.delay(10000) {
-            MainStore.dispatchToGeneralReducer(WelcomeDialogShown, true)
+            MainStore.dispatchTyped(WelcomeDialogShown, true)
         }
     }
 }
