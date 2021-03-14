@@ -5,6 +5,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
+import com.guymichael.componentapplicationexample.ui.components.jetpackcompose.core.model.ValueProps
 import com.guymichael.kotlinflux.model.GlobalState
 import com.guymichael.kotlinflux.model.Store
 import com.guymichael.kotlinflux.model.StoreObserver
@@ -65,6 +66,19 @@ fun <P : OwnProps> Store.observeAsState(
 ): State<P> {
     return this
         .observeAsState(EmptyOwnProps, mapStateToProps = { state, _ -> mapStateToProps(state) })
+}
+
+/**
+ * Subscribe to a [Store] and observe changes as a [State] of [OwnProps],
+ * with no `apiProps`
+ */
+@Composable
+fun <T> Store.observeValue(
+    mapStateToValue: (state: GlobalState) -> T
+): State<T> {
+    return this
+        .observeAsState(EmptyOwnProps, mapStateToProps = { state, _ -> ValueProps(mapStateToValue(state)) })
+        .value.let { mutableStateOf(it.value) }
 }
 
 /**
