@@ -6,9 +6,9 @@ import com.guymichael.apromise.APromise
 import com.guymichael.componentapplicationexample.R
 import com.guymichael.componentapplicationexample.navigation.CLIENT_PAGE
 import com.guymichael.kotlinreact.model.EmptyOwnProps
-import com.guymichael.reactiveapp.activities.BaseActivity
 import com.guymichael.reactdroid.extensions.navigation.NavigationLogic
 import com.guymichael.reactdroid.extensions.router.openDeepLinkOrReject
+import com.guymichael.reactiveapp.activities.BaseActivity
 
 class SplashScreen : BaseActivity<EmptyOwnProps, EmptyPage, EmptyOwnProps>() {
     override val clientPage: Nothing? = null
