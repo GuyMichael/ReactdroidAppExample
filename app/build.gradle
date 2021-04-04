@@ -55,7 +55,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     //app main library
-    implementation 'com.github.GuyMichael.reactiveapp:reactiveapp:0.1.25'
+    implementation 'com.github.GuyMichael.reactiveapp:reactiveapp:0.1.26'
 
     //networking - jsn parsing - moshi - codegen - auto generated adapters at compile time
     kapt("com.squareup.moshi:moshi-kotlin-codegen:1.11.0")

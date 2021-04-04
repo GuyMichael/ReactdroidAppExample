@@ -1,7 +1,7 @@
 package com.guymichael.componentapplicationexample.persist.db.table
 
 import com.guymichael.componentapplicationexample.network.client.netflix.data.NetflixGenreData
-import com.guymichael.reactiveapp.persist.db.model.ListPropertyConverter
+import com.guymichael.reactiveapp.persist.db.model.DoubleListPropertyConverter
 import io.objectbox.annotation.Convert
 import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
@@ -12,7 +12,7 @@ data class Table_NetflixGenre(
         //DB id, set as 0 to mark as new. It will auto-update upon persist
         @Id var id: Long = 0
         , @Unique val name: String
-        , @Convert(converter = ListPropertyConverter::class, dbType = String::class)
+        , @Convert(converter = DoubleListPropertyConverter::class, dbType = String::class)
           val titleIds: List<Double>
     ) {
 
